@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.11.1'
 # a gem that generaes fakers data
 gem 'faker'
+#Centralization of locale data collection for Ruby on Rails.
+gem 'rails-i18n', '~> 4.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.13'
 # Use SCSS for stylesheets

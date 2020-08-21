@@ -3663,3 +3663,563 @@ Completed 200 OK in 26ms (Views: 24.3ms | ActiveRecord: 0.3ms)
 
 
 Started GET "/assets/down-arrow.png" for ::1 at 2020-08-21 17:30:47 -0300
+
+
+Started GET "/contacts/11" for ::1 at 2020-08-21 18:03:35 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 11]]
+  Rendered contacts/_form.html.erb (568.9ms)
+  Rendered contacts/show.html.erb within layouts/application (574.1ms)
+Completed 500 Internal Server Error in 611ms (ActiveRecord: 0.5ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/pt-BR.yml: expects it to return a hash, but does not):
+    14:   <h1> Contacts </h1>
+    15: 
+    16:   <div class="field">
+    17:     <%= f.label :name %><br>
+    18:     <%= f.text_field :name %>
+    19:   </div>
+    20:   <div class="field">
+  app/views/contacts/_form.html.erb:17:in `block in _app_views_contacts__form_html_erb__2681673643049029270_70100109157640'
+  app/views/contacts/_form.html.erb:1:in `_app_views_contacts__form_html_erb__2681673643049029270_70100109157640'
+  app/views/contacts/show.html.erb:1:in `_app_views_contacts_show_html_erb___2841688326077004252_70100124963560'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (85.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (531.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (576.8ms)
+
+
+Started GET "/" for ::1 at 2020-08-21 18:04:31 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 186ms (Views: 185.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:04:33 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.3ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered contacts/partials/_teste.html.erb (0.3ms)
+  Rendered contacts/index.html.erb within layouts/application (29.1ms)
+Completed 200 OK in 55ms (Views: 52.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/addresses" for ::1 at 2020-08-21 18:04:37 -0300
+Processing by AddressesController#index as HTML
+  [1m[36mAddress Load (0.2ms)[0m  [1mSELECT "addresses".* FROM "addresses"[0m
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mContact Load (0.6ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 7]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 11]]
+  Rendered addresses/index.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 54ms (Views: 49.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/addresses" for ::1 at 2020-08-21 18:04:40 -0300
+Processing by AddressesController#index as HTML
+  [1m[36mAddress Load (0.2ms)[0m  [1mSELECT "addresses".* FROM "addresses"[0m
+  [1m[35mContact Load (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mContact Load (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mContact Load (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 7]]
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mContact Load (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 11]]
+  Rendered addresses/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 27ms (Views: 25.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:04:42 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.4ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 44ms (Views: 42.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/11" for ::1 at 2020-08-21 18:04:44 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 11]]
+  Rendered contacts/_form.html.erb (490.8ms)
+  Rendered contacts/show.html.erb within layouts/application (492.2ms)
+Completed 500 Internal Server Error in 498ms (ActiveRecord: 0.1ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/pt-BR.yml: expects it to return a hash, but does not):
+    14:   <h1> Contacts </h1>
+    15: 
+    16:   <div class="field">
+    17:     <%= f.label :name %><br>
+    18:     <%= f.text_field :name %>
+    19:   </div>
+    20:   <div class="field">
+  app/views/contacts/_form.html.erb:17:in `block in _app_views_contacts__form_html_erb__2681673643049029270_70100109157640'
+  app/views/contacts/_form.html.erb:1:in `_app_views_contacts__form_html_erb__2681673643049029270_70100109157640'
+  app/views/contacts/show.html.erb:1:in `_app_views_contacts_show_html_erb___2841688326077004252_70100124963560'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (80.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (517.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (560.4ms)
+
+
+Started GET "/contacts/11" for ::1 at 2020-08-21 18:09:22 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 11]]
+  Rendered contacts/_form.html.erb (685.6ms)
+  Rendered contacts/show.html.erb within layouts/application (689.5ms)
+Completed 500 Internal Server Error in 721ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/pt-BR.yml: expects it to return a hash, but does not):
+    14:   <h1> Contacts </h1>
+    15: 
+    16:   <div class="field">
+    17:     <%= f.label :name %><br>
+    18:     <%= f.text_field :name %>
+    19:   </div>
+    20:   <div class="field">
+  app/views/contacts/_form.html.erb:17:in `block in _app_views_contacts__form_html_erb___592543810341116731_70291565639000'
+  app/views/contacts/_form.html.erb:1:in `_app_views_contacts__form_html_erb___592543810341116731_70291565639000'
+  app/views/contacts/show.html.erb:1:in `_app_views_contacts_show_html_erb___4042583240988382707_70291569470300'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (91.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (780.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (822.9ms)
+
+
+Started GET "/contacts/11" for ::1 at 2020-08-21 18:14:19 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 11]]
+  Rendered contacts/_form.html.erb (667.2ms)
+  Rendered contacts/show.html.erb within layouts/application (672.1ms)
+Completed 500 Internal Server Error in 702ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+    14:   <h1> Contacts </h1>
+    15: 
+    16:   <div class="field">
+    17:     <%= f.label :name %><br>
+    18:     <%= f.text_field :name %>
+    19:   </div>
+    20:   <div class="field">
+  app/views/contacts/_form.html.erb:17:in `block in _app_views_contacts__form_html_erb__505051353511500366_70136116099620'
+  app/views/contacts/_form.html.erb:1:in `_app_views_contacts__form_html_erb__505051353511500366_70136116099620'
+  app/views/contacts/show.html.erb:1:in `_app_views_contacts_show_html_erb__325474322237364414_70136132830120'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (81.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (790.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (832.3ms)
+
+
+Started GET "/" for ::1 at 2020-08-21 18:14:24 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 232ms (Views: 231.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:14:26 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered contacts/partials/_teste.html.erb (0.3ms)
+  Rendered contacts/index.html.erb within layouts/application (23.4ms)
+Completed 200 OK in 72ms (Views: 70.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:18:23 -0300
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (658.8ms)
+Completed 500 Internal Server Error in 666ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___2741656433000195553_70136136100760'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (77.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (759.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (800.1ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:20:15 -0300
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (670.1ms)
+Completed 500 Internal Server Error in 680ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___2741656433000195553_70136136100760'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (76.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (812.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (855.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:21:58 -0300
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (753.1ms)
+Completed 500 Internal Server Error in 758ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___2741656433000195553_70136136100760'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (73.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (712.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (753.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:28:14 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (641.3ms)
+Completed 500 Internal Server Error in 667ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___1855208638092089483_70330450644900'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (84.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (786.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (838.4ms)
+
+
+Started GET "/" for ::1 at 2020-08-21 18:28:42 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 211ms (Views: 210.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-21 18:28:44 -0300
+Processing by KindsController#index as HTML
+  [1m[35mKind Load (0.3ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered kinds/index.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 36ms (Views: 33.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/addresses" for ::1 at 2020-08-21 18:28:47 -0300
+Processing by AddressesController#index as HTML
+  [1m[36mAddress Load (0.6ms)[0m  [1mSELECT "addresses".* FROM "addresses"[0m
+  [1m[35mContact Load (1.8ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 7]]
+  [1m[36mContact Load (0.4ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 11]]
+  Rendered addresses/index.html.erb within layouts/application (72.3ms)
+Completed 200 OK in 145ms (Views: 135.6ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/phones" for ::1 at 2020-08-21 18:28:49 -0300
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (0.3ms)[0m  [1mSELECT "phones".* FROM "phones"[0m
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 7]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 7]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 7]]
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 8]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 8]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 8]]
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 9]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 9]]
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 10]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 10]]
+  Rendered phones/index.html.erb within layouts/application (47.4ms)
+Completed 200 OK in 88ms (Views: 76.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:28:50 -0300
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (618.2ms)
+Completed 500 Internal Server Error in 625ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___1855208638092089483_70330450644900'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (86.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (775.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (818.9ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:30:44 -0300
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (659.2ms)
+Completed 500 Internal Server Error in 664ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___1855208638092089483_70330450644900'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (76.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (710.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (755.6ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:41:55 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (664.2ms)
+Completed 500 Internal Server Error in 692ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___520258930725892040_70193416187440'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (86.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (809.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (858.8ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:46:07 -0300
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (627.7ms)
+Completed 500 Internal Server Error in 636ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: #<Psych::SyntaxError: (/Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml): found character that cannot start any token while scanning for the next token at line 2 column 1>):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___520258930725892040_70193416187440'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (78.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (762.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (808.6ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-21 18:46:33 -0300
+Processing by ContactsController#index as HTML
+  Rendered contacts/index.html.erb within layouts/application (625.0ms)
+Completed 500 Internal Server Error in 633ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (can not load translations from /Users/matheussouza/Desktop/notebook/config/locales/model.pt-BR.yml: expects it to return a hash, but does not):
+     5: <table>
+     6:   <thead>
+     7:     <tr>
+     8:       <th><%= Contact.human_attribute_name("name") %></th>
+     9:       <th><%= Contact.human_attribute_name("email") %></th>
+    10:       <th><%= Contact.human_attribute_name("kind") %></th>
+    11:       <th><%= Contact.human_attribute_name("rmk") %></th>
+  app/views/contacts/index.html.erb:8:in `_app_views_contacts_index_html_erb___520258930725892040_70193416187440'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (78.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (735.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (779.3ms)
