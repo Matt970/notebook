@@ -1,0 +1,1938 @@
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateKinds (20200820144228)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "kinds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200820144228"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateContacts (20200820144503)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "kind_id" integer, "rmk" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_contacts_on_kind_id" ON "contacts" ("kind_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20200820144503"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAddresses (20200820144612)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "street" varchar, "city" varchar, "state" varchar, "contact_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_addresses_on_contact_id" ON "addresses" ("contact_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200820144612"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreatePhones (20200820144647)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "phones" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "contact_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_phones_on_contact_id" ON "phones" ("contact_id")[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20200820144647"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_addresses_on_contact_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_addresses_on_contact_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_contacts_on_kind_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_contacts_on_kind_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_phones_on_contact_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_phones_on_contact_id' AND type='index'
+[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+
+
+Started GET "/" for ::1 at 2020-08-20 11:57:46 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/railties-4.2.11.1/lib/rails/templates/rails/welcome/index.html.erb (2.2ms)
+Completed 200 OK in 21ms (Views: 13.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/Kinds" for ::1 at 2020-08-20 11:57:58 -0300
+
+ActionController::RoutingError (No route matches [GET] "/Kinds"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (13.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (192.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (99.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (231.1ms)
+
+
+Started GET "/Kind" for ::1 at 2020-08-20 11:58:08 -0300
+
+ActionController::RoutingError (No route matches [GET] "/Kind"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (156.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (85.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (198.5ms)
+
+
+Started GET "/Kinds" for ::1 at 2020-08-20 11:58:43 -0300
+
+ActionController::RoutingError (No route matches [GET] "/Kinds"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (155.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (123.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (248.7ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 11:59:54 -0300
+Processing by KindsController#index as HTML
+  [1m[35mKind Load (0.5ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered kinds/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 2239ms (Views: 2235.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/addresses.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/contacts.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/phones.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/kinds.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/scaffolds.self-6121d99429cb20701cbba2160f99ff4ffb76c372cf34e94f763ccc416f1b98c7.css?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/turbolinks.self-569ee74eaa15c1e2019317ff770b8769b1ec033a0f572a485f64c82ddc8f989e.js?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/addresses.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/contacts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/kinds.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2020-08-20 11:59:56 -0300
+
+
+Started GET "/assets/phones.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2020-08-20 11:59:57 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2020-08-20 11:59:57 -0300
+
+
+Started GET "/kinds/new" for ::1 at 2020-08-20 11:59:58 -0300
+Processing by KindsController#new as HTML
+  Rendered kinds/_form.html.erb (11.8ms)
+  Rendered kinds/new.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 56ms (Views: 49.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/kinds" for ::1 at 2020-08-20 12:00:08 -0300
+Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Mw8fbPIwzqR1nPYTLR1CqjI8a42mFeN5OVd6NJMx2lrQDWYpvtUbK1WXQBXuyfdsfOc1OziCiz7aXxTjwpWQhg==", "kind"=>{"description"=>"Comércio"}, "commit"=>"Create Kind"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "kinds" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Comércio"], ["created_at", "2020-08-20 15:00:08.648788"], ["updated_at", "2020-08-20 15:00:08.648788"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/kinds/1
+Completed 302 Found in 8ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/kinds/1" for ::1 at 2020-08-20 12:00:08 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mKind Load (0.2ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered kinds/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 43ms (Views: 29.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 12:00:11 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 33ms (Views: 32.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/new" for ::1 at 2020-08-20 12:00:13 -0300
+Processing by KindsController#new as HTML
+  Rendered kinds/_form.html.erb (1.0ms)
+  Rendered kinds/new.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 28ms (Views: 26.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 12:00:15 -0300
+Processing by KindsController#index as HTML
+  [1m[35mKind Load (0.3ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered kinds/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 31ms (Views: 29.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/kinds/new" for ::1 at 2020-08-20 12:00:25 -0300
+Processing by KindsController#new as HTML
+  Rendered kinds/_form.html.erb (1.1ms)
+  Rendered kinds/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 40ms (Views: 39.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kinds" for ::1 at 2020-08-20 12:00:31 -0300
+Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"t5/i5moqcg65Rg0KhiEmqb5DqmhlEwJv8ORizIsn6o9UnZujJs+ngZlNuwxF9ZNv8Jj03vuEaigT7Awb2oOgUw==", "kind"=>{"description"=>"Amigo"}, "commit"=>"Create Kind"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "kinds" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Amigo"], ["created_at", "2020-08-20 15:00:31.912739"], ["updated_at", "2020-08-20 15:00:31.912739"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/kinds/2
+Completed 302 Found in 5ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/kinds/2" for ::1 at 2020-08-20 12:00:31 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered kinds/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 36ms (Views: 35.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 12:00:32 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 56ms (Views: 54.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/new" for ::1 at 2020-08-20 12:00:33 -0300
+Processing by KindsController#new as HTML
+  Rendered kinds/_form.html.erb (5.7ms)
+  Rendered kinds/new.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 65ms (Views: 63.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/kinds" for ::1 at 2020-08-20 12:00:40 -0300
+Processing by KindsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DLOC3KiGSD1OZM2T4OI9c1V/oigcurtwr+Ux9giUIpzvsfuZ5GOdsm5ve5UjNoi1G6T8noIt0zdM7V8hWTBoQA==", "kind"=>{"description"=>"Contato"}, "commit"=>"Create Kind"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "kinds" ("description", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["description", "Contato"], ["created_at", "2020-08-20 15:00:40.743022"], ["updated_at", "2020-08-20 15:00:40.743022"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/kinds/3
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/kinds/3" for ::1 at 2020-08-20 12:00:40 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered kinds/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 38ms (Views: 36.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 12:00:45 -0300
+Processing by KindsController#index as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered kinds/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 37ms (Views: 35.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 12:00:55 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.7ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 58ms (Views: 42.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 12:00:59 -0300
+Processing by ContactsController#new as HTML
+  Rendered contacts/_form.html.erb (9.7ms)
+  Rendered contacts/new.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 59ms (Views: 50.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/contacts" for ::1 at 2020-08-20 12:01:35 -0300
+Processing by ContactsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"70gecgKyi3WG4V/MQTTtmkR6agOYZeKkQVfguiHMLvMMSmc3Tlde+qbq6cqC4FhcCqE0tQbyiuOiX45tcGhkLw==", "contact"=>{"name"=>"Letícia", "email"=>"leticia@gmail.com", "kind_id"=>"", "rmk"=>"Lindona"}, "commit"=>"Create Contact"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "contacts" ("name", "email", "rmk", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Letícia"], ["email", "leticia@gmail.com"], ["rmk", "Lindona"], ["created_at", "2020-08-20 15:01:35.980090"], ["updated_at", "2020-08-20 15:01:35.980090"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/contacts/1
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/contacts/1" for ::1 at 2020-08-20 12:01:35 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered contacts/show.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 31ms (Views: 29.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 12:01:37 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.2ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 26ms (Views: 25.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/phones" for ::1 at 2020-08-20 12:01:41 -0300
+Processing by PhonesController#index as HTML
+  [1m[36mPhone Load (0.2ms)[0m  [1mSELECT "phones".* FROM "phones"[0m
+  Rendered phones/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 38ms (Views: 34.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/phones/new" for ::1 at 2020-08-20 12:01:43 -0300
+Processing by PhonesController#new as HTML
+  Rendered phones/_form.html.erb (2.6ms)
+  Rendered phones/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 42ms (Views: 36.5ms | ActiveRecord: 0.4ms)
+  [1m[36mKind Load (1.7ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+
+
+Started GET "/home/index" for ::1 at 2020-08-20 12:42:36 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 315ms (Views: 305.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2020-08-20 12:42:36 -0300
+
+
+Started GET "/assets/home.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2020-08-20 12:42:36 -0300
+
+
+Started GET "/home/index" for ::1 at 2020-08-20 12:49:27 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 42ms (Views: 42.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/index" for ::1 at 2020-08-20 12:50:03 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 46ms (Views: 44.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home/index" for ::1 at 2020-08-20 12:50:32 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 49ms (Views: 47.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 12:50:34 -0300
+Processing by KindsController#index as HTML
+  [1m[35mKind Load (0.6ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered kinds/index.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 47ms (Views: 42.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 12:51:37 -0300
+DEPRECATION WARNING: Defining a route where `to` is a controller without an action is deprecated. Please change `to: 'home/index'` to `controller: 'home/index'`. (called from block in <top (required)> at /Users/matheussouza/notebook/config/routes.rb:2)
+
+ArgumentError (Missing :action key on routes definition, please check your routes.):
+  config/routes.rb:2:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (95.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (95.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (220.2ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 12:51:53 -0300
+DEPRECATION WARNING: Defining a route where `to` is a controller without an action is deprecated. Please change `to: 'home/index'` to `controller: 'home/index'`. (called from block in <top (required)> at /Users/matheussouza/notebook/config/routes.rb:4)
+
+ArgumentError (Missing :action key on routes definition, please check your routes.):
+  config/routes.rb:4:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (93.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (104.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (215.7ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 12:52:17 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 36ms (Views: 35.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 14:40:29 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 35ms (Views: 34.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 14:40:31 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (1.1ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 48ms (Views: 43.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 14:42:56 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 33ms (Views: 32.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 16:06:16 -0300
+
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  config/routes.rb:2:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (99.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (88.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (202.9ms)
+
+
+Started GET "/benvindo" for ::1 at 2020-08-20 16:06:22 -0300
+
+ActionController::RoutingError (No route matches [GET] "/benvindo"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (17.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (114.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (80.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (200.5ms)
+
+
+Started GET "/bemvindo" for ::1 at 2020-08-20 16:06:28 -0300
+
+ActionController::RoutingError (No route matches [GET] "/bemvindo"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (92.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (86.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (190.1ms)
+
+
+Started GET "/bemvindo" for ::1 at 2020-08-20 16:06:43 -0300
+
+ArgumentError (Missing :controller key on routes definition, please check your routes.):
+  config/routes.rb:2:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (105.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (84.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (197.9ms)
+
+
+Started GET "/bemvindo" for ::1 at 2020-08-20 16:07:32 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 42ms (Views: 41.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 16:07:35 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 31ms (Views: 30.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 16:18:08 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 23ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:18:09 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (1.1ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 56ms (Views: 44.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 16:18:11 -0300
+Processing by ContactsController#new as HTML
+  Rendered contacts/_form.html.erb (31.1ms)
+  Rendered contacts/new.html.erb within layouts/application (33.5ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined local variable or method `kind_id' for #<#<Class:0x007ff13c621c10>:0x007ff13f0f9e60>):
+    22:   <div class="field">
+    23:     <%= f.label :kind_id %><br>
+    24:     <%= f.text_field :kind_id %>
+    25:     <%= collection_select(:contact, kind_id, Kind.all, :id, :description) %>
+    26:   </div>
+    27:   <div class="field">
+    28:     <%= f.label :rmk %><br>
+  app/views/contacts/_form.html.erb:25:in `block in _app_views_contacts__form_html_erb__3252315398904744430_70336992859080'
+  app/views/contacts/_form.html.erb:1:in `_app_views_contacts__form_html_erb__3252315398904744430_70336992859080'
+  app/views/contacts/new.html.erb:3:in `_app_views_contacts_new_html_erb___2113990491794808405_70337060914600'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (87.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (73.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (171.4ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 16:18:39 -0300
+Processing by ContactsController#new as HTML
+  [1m[36mKind Load (0.6ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (16.4ms)
+  Rendered contacts/new.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 59ms (Views: 57.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 16:18:50 -0300
+Processing by ContactsController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (4.5ms)
+  Rendered contacts/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 36ms (Views: 34.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 16:22:14 -0300
+Processing by ContactsController#new as HTML
+  [1m[36mKind Load (0.4ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (4.4ms)
+  Rendered contacts/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 41ms (Views: 32.8ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/contacts" for ::1 at 2020-08-20 16:23:48 -0300
+Processing by ContactsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YhiOuRkFi1+GrHHshdHZxhIn1F81BOiFgJ1wJNYXO+yBGvf8VeBe0Kanx+pGBWwAXPyK6auTgMJjlR7zh7NxMA==", "contact"=>{"name"=>"Matheus", "email"=>"matheusolisouza970@gmail.com", "kind_id"=>"3", "rmk"=>"bro"}, "commit"=>"Create Contact"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.9ms)[0m  [1mINSERT INTO "contacts" ("name", "email", "kind_id", "rmk", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Matheus"], ["email", "matheusolisouza970@gmail.com"], ["kind_id", 3], ["rmk", "bro"], ["created_at", "2020-08-20 19:23:48.292422"], ["updated_at", "2020-08-20 19:23:48.292422"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/contacts/2
+Completed 302 Found in 8ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/contacts/2" for ::1 at 2020-08-20 16:23:48 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered contacts/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 42ms (Views: 33.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 16:24:22 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/_form.html.erb (5.2ms)
+  Rendered contacts/edit.html.erb within layouts/application (8.4ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    20:     <%= f.text_field :email %>
+    21:   </div>
+    22:   <div class="field">
+    23:     <%= collection_select(:contact, :kind_id, @kinds_options_for_select, :id, :description) %>
+    24:   </div>
+    25:   <div class="field">
+    26:     <%= f.label :rmk %><br>
+  app/views/contacts/_form.html.erb:23:in `block in _app_views_contacts__form_html_erb__3252315398904744430_70337038545660'
+  app/views/contacts/_form.html.erb:1:in `_app_views_contacts__form_html_erb__3252315398904744430_70337038545660'
+  app/views/contacts/edit.html.erb:3:in `_app_views_contacts_edit_html_erb___4298262719893831346_70336992294300'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (84.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (77.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (181.2ms)
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 16:28:16 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.5ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (8.0ms)
+  Rendered contacts/edit.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 44ms (Views: 34.3ms | ActiveRecord: 1.4ms)
+
+
+Started PATCH "/contacts/2" for ::1 at 2020-08-20 16:28:35 -0300
+Processing by ContactsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LnNTyZCZhfWTYuQnRp0U8xiHcEPEqc6OeXHhYcKC/U7NcSqM3HxQerNpUiGFSaE1Vlwu9Vo+psmaeY+2kya3kg==", "contact"=>{"name"=>"Matheus", "email"=>"matheusolisouza970@gmail.com", "kind_id"=>"2", "rmk"=>"bro"}, "commit"=>"Update Contact", "id"=>"2"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "contacts" SET "kind_id" = ?, "updated_at" = ? WHERE "contacts"."id" = ?  [["kind_id", 2], ["updated_at", "2020-08-20 19:28:35.301719"], ["id", 2]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/contacts/2
+Completed 302 Found in 8ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/contacts/2" for ::1 at 2020-08-20 16:28:35 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 33ms (Views: 32.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 16:28:37 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (4.6ms)
+  Rendered contacts/edit.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 42ms (Views: 40.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 16:30:38 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (12.4ms)
+  Rendered contacts/edit.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 45ms (Views: 37.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:30:40 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.1ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 34ms (Views: 32.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts/1/edit" for ::1 at 2020-08-20 16:30:45 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (5.0ms)
+  Rendered contacts/edit.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 31ms (Views: 29.6ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/contacts/1" for ::1 at 2020-08-20 16:30:49 -0300
+Processing by ContactsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m4nEv1H2/nRAX/dn5h1KWSFF1DV+A35yFYvZIcL6bHd4i736HRMr+2BUQWElyf+fb56Kg+CUFjX2g7f2k14mqw==", "contact"=>{"name"=>"Letícia", "email"=>"leticia@gmail.com", "kind_id"=>"2", "rmk"=>"Lindona"}, "commit"=>"Update Contact", "id"=>"1"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "contacts" SET "kind_id" = ?, "updated_at" = ? WHERE "contacts"."id" = ?  [["kind_id", 2], ["updated_at", "2020-08-20 19:30:49.765442"], ["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/contacts/1
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/contacts/1" for ::1 at 2020-08-20 16:30:49 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 37ms (Views: 36.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts/1/edit" for ::1 at 2020-08-20 16:30:51 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKind Load (0.3ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (4.3ms)
+  Rendered contacts/edit.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 36ms (Views: 34.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:30:52 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.2ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 42ms (Views: 40.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:54:04 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/index.html.erb within layouts/application (17.3ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined local variable or method `teste' for #<#<Class:0x007ff137027ad0>:0x007ff13c1cfa68>):
+    31: <br>
+    32: 
+    33: <%= link_to 'New Contact', new_contact_path %>
+    34: <%= render partial: teste %>
+  app/views/contacts/index.html.erb:34:in `_app_views_contacts_index_html_erb__1882677631142007677_70337036182320'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (94.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (88.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (201.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:54:11 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.2ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/index.html.erb within layouts/application (30.4ms)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined local variable or method `teste' for #<#<Class:0x007ff137027ad0>:0x007ff138fc15a8>):
+    31: <br>
+    32: 
+    33: <%= link_to 'New Contact', new_contact_path %>
+    34: <%= render partial: teste %>
+  app/views/contacts/index.html.erb:34:in `_app_views_contacts_index_html_erb__1882677631142007677_70337036182320'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (107.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (90.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (205.5ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:54:39 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.3ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/index.html.erb within layouts/application (15.8ms)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (Missing partial contacts/partial/_teste with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/matheussouza/notebook/app/views"
+):
+    31: <br>
+    32: 
+    33: <%= link_to 'New Contact', new_contact_path %>
+    34: <%= render partial: '/contacts/partial/teste' %>
+  app/views/contacts/index.html.erb:34:in `_app_views_contacts_index_html_erb__1882677631142007677_70337061063940'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (95.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (93.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (210.4ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:59:36 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.1ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/index.html.erb within layouts/application (6.1ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (Missing partial contacts/_teste, application/_teste with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/matheussouza/notebook/app/views"
+):
+    31: <br>
+    32: 
+    33: <%= link_to 'New Contact', new_contact_path %>
+    34: <%= render partial: 'teste' %>
+  app/views/contacts/index.html.erb:34:in `_app_views_contacts_index_html_erb__1882677631142007677_70337008645580'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (109.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (86.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (203.4ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 16:59:48 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/index.html.erb within layouts/application (10.8ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (Missing partial contacts/_teste, application/_teste with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/matheussouza/notebook/app/views"
+):
+    31: <br>
+    32: 
+    33: <%= link_to 'New Contact', new_contact_path %>
+    34: <%= render partial: 'teste' %>
+  app/views/contacts/index.html.erb:34:in `_app_views_contacts_index_html_erb__1882677631142007677_70337008645580'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (127.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (124.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (279.0ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:00:31 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.1ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.4ms)
+  Rendered contacts/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 49ms (Views: 47.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:00:47 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.2ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.5ms)
+  Rendered contacts/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 40ms (Views: 38.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:11:05 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.1ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 38ms (Views: 37.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/template/down-arrow.png" for ::1 at 2020-08-20 17:11:25 -0300
+
+ActionController::RoutingError (No route matches [GET] "/template/down-arrow.png"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (150.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (94.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (223.3ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 17:15:57 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 118ms (Views: 117.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffolds.self-5cea39bad9e09fdfb9c8d46443192adbc3eebcd2ee09dc9adbaf1c06611eb6f4.css?body=1" for ::1 at 2020-08-20 17:15:57 -0300
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 17:15:58 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 34ms (Views: 33.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/1" for ::1 at 2020-08-20 17:16:00 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mKind Load (0.3ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered kinds/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 38ms (Views: 36.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 17:16:02 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 45ms (Views: 44.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/3" for ::1 at 2020-08-20 17:16:04 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mKind Load (0.2ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered kinds/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 33ms (Views: 31.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 17:16:05 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 37ms (Views: 36.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:16:12 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.2ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.2ms)
+  Rendered contacts/index.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 54ms (Views: 52.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contacts/1/edit" for ::1 at 2020-08-20 17:16:14 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mKind Load (0.3ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (11.5ms)
+  Rendered contacts/edit.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 53ms (Views: 51.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:16:14 -0300
+
+ActionController::RoutingError (No route matches [GET] "/assets/down-arrow.png"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (134.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (87.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (195.4ms)
+
+
+Started GET "/contacts/1/edit" for ::1 at 2020-08-20 17:19:36 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mKind Load (0.1ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (3.0ms)
+  Rendered contacts/edit.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 98ms (Views: 96.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:19:36 -0300
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:20:02 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 36ms (Views: 34.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:21:28 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.1ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 36ms (Views: 35.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts/2" for ::1 at 2020-08-20 17:21:31 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 28ms (Views: 27.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:21:33 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 28ms (Views: 27.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:21:34 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (3.9ms)
+  Rendered contacts/edit.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 27ms (Views: 26.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:21:34 -0300
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:24:20 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.6ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (6.6ms)
+  Rendered contacts/edit.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 48ms (Views: 44.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:24:20 -0300
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:25:01 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.3ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (3.5ms)
+  Rendered contacts/edit.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 38ms (Views: 35.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:25:01 -0300
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:25:35 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (10.6ms)
+  Rendered contacts/edit.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 46ms (Views: 44.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:25:35 -0300
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:25:55 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/_form.html.erb (1.0ms)
+  Rendered contacts/edit.html.erb within layouts/application (2.2ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.2ms)
+
+SyntaxError (/Users/matheussouza/notebook/app/views/contacts/_form.html.erb:34: syntax error, unexpected tIDENTIFIER, expecting ')'
+...d=( link_to :back contacts_path, class: 'button');@output_bu...
+...                               ^):
+  app/views/contacts/_form.html.erb:34: syntax error, unexpected tIDENTIFIER, expecting ')'
+  app/views/contacts/edit.html.erb:1:in `_app_views_contacts_edit_html_erb___4298262719893831346_70337003365020'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (105.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (86.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (204.2ms)
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:26:39 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mKind Load (0.1ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (2.7ms)
+  Rendered contacts/edit.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 40ms (Views: 39.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:26:40 -0300
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:30:06 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (3.0ms)
+  Rendered contacts/edit.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 29ms (Views: 27.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:30:07 -0300
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:30:10 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContact Load (0.3ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mKind Load (0.1ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (2.5ms)
+  Rendered contacts/edit.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 32ms (Views: 29.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contacts/2/edit" for ::1 at 2020-08-20 17:30:47 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mKind Load (0.1ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (2.5ms)
+  Rendered contacts/edit.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 32ms (Views: 30.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:30:49 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.5ms)
+  Rendered contacts/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 36ms (Views: 34.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 17:30:52 -0300
+Processing by ContactsController#new as HTML
+  [1m[35mKind Load (0.1ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (3.3ms)
+  Rendered contacts/new.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 39ms (Views: 37.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:30:54 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 39ms (Views: 37.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 17:32:27 -0300
+Processing by ContactsController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (3.1ms)
+  Rendered contacts/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 43ms (Views: 42.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 17:33:03 -0300
+Processing by ContactsController#new as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (2.9ms)
+  Rendered contacts/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 38ms (Views: 36.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 17:33:36 -0300
+Processing by ContactsController#new as HTML
+  [1m[35mKind Load (0.3ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (4.3ms)
+  Rendered contacts/new.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 54ms (Views: 52.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 17:33:39 -0300
+Processing by ContactsController#new as HTML
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (3.1ms)
+  Rendered contacts/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 45ms (Views: 43.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contacts/new" for ::1 at 2020-08-20 17:39:25 -0300
+Processing by ContactsController#new as HTML
+  [1m[35mKind Load (0.2ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (3.8ms)
+  Rendered contacts/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 100ms (Views: 98.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffolds.self-890d19db30e2111054edd31e49a5343c36fe06e045124a20b9daec6ea1e33075.css?body=1" for ::1 at 2020-08-20 17:39:25 -0300
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:39:25 -0300
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:42:03 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 42ms (Views: 40.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts/1/edit" for ::1 at 2020-08-20 17:42:05 -0300
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.2ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered contacts/_form.html.erb (4.6ms)
+  Rendered contacts/edit.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 50ms (Views: 47.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:42:06 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.2ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.0ms)
+  Rendered contacts/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 44ms (Views: 43.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 17:43:39 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 23ms (Views: 22.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/1/edit" for ::1 at 2020-08-20 17:43:41 -0300
+Processing by KindsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered kinds/_form.html.erb (2.5ms)
+  Rendered kinds/edit.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 37ms (Views: 36.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 17:43:42 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 39ms (Views: 38.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/adderss" for ::1 at 2020-08-20 17:44:53 -0300
+
+ActionController::RoutingError (No route matches [GET] "/adderss"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (132.1ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (109.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (241.6ms)
+
+
+Started GET "/addersses" for ::1 at 2020-08-20 17:44:57 -0300
+
+ActionController::RoutingError (No route matches [GET] "/addersses"):
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11.1) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (144.7ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (78.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (187.4ms)
+
+
+Started GET "/addresses" for ::1 at 2020-08-20 17:45:04 -0300
+Processing by AddressesController#index as HTML
+  [1m[35mAddress Load (0.8ms)[0m  SELECT "addresses".* FROM "addresses"
+  Rendered addresses/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 31ms (Views: 25.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/addresses/new" for ::1 at 2020-08-20 17:45:06 -0300
+Processing by AddressesController#new as HTML
+  Rendered addresses/_form.html.erb (2.5ms)
+  Rendered addresses/new.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 39ms (Views: 31.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/addresses/new" for ::1 at 2020-08-20 17:45:35 -0300
+Processing by AddressesController#new as HTML
+  Rendered addresses/_form.html.erb (2.6ms)
+  Rendered addresses/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 38ms (Views: 36.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/addresses/new" for ::1 at 2020-08-20 17:45:52 -0300
+Processing by AddressesController#new as HTML
+  Rendered addresses/_form.html.erb (2.8ms)
+  Rendered addresses/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 48ms (Views: 47.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/addresses/new" for ::1 at 2020-08-20 17:46:03 -0300
+Processing by AddressesController#new as HTML
+  Rendered addresses/_form.html.erb (1.3ms)
+  Rendered addresses/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 26ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:46:29 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.2ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 39ms (Views: 37.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contacts/1" for ::1 at 2020-08-20 17:46:31 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 32ms (Views: 30.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts/1" for ::1 at 2020-08-20 17:47:05 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.1ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered contacts/_form.html.erb (5.0ms)
+  Rendered contacts/show.html.erb within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.1ms)
+
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    23:   </div>
+    24:   <div class="field">
+    25:     <%= f.label :kind_id %><br>
+    26:     <%= collection_select(:contact, :kind_id, @kinds_options_for_select, :id, :description) %>
+    27:   </div>
+    28:   <div class="field">
+    29:     <%= f.label :rmk %><br>
+  app/views/contacts/_form.html.erb:26:in `block in _app_views_contacts__form_html_erb__3252315398904744430_70337061290620'
+  app/views/contacts/_form.html.erb:1:in `_app_views_contacts__form_html_erb__3252315398904744430_70337061290620'
+  app/views/contacts/show.html.erb:1:in `_app_views_contacts_show_html_erb__3645538347834198010_70337005498360'
+
+
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/actionpack-4.2.11.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (106.8ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (95.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/matheussouza/.rbenv/versions/2.2.7/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (223.2ms)
+
+
+Started GET "/contacts/1" for ::1 at 2020-08-20 17:47:41 -0300
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mKind Load (0.1ms)[0m  SELECT "kinds".* FROM "kinds"
+  Rendered contacts/_form.html.erb (3.8ms)
+  Rendered contacts/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 38ms (Views: 29.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/down-arrow.png" for ::1 at 2020-08-20 17:47:41 -0300
+
+
+Started GET "/addresses/" for ::1 at 2020-08-20 17:48:12 -0300
+Processing by AddressesController#index as HTML
+  [1m[36mAddress Load (0.2ms)[0m  [1mSELECT "addresses".* FROM "addresses"[0m
+  Rendered addresses/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 37ms (Views: 33.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/addresses/new" for ::1 at 2020-08-20 17:48:14 -0300
+Processing by AddressesController#new as HTML
+  Rendered addresses/_form.html.erb (4.0ms)
+  Rendered addresses/new.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 60ms (Views: 50.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:48:15 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.2ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.0ms)
+  Rendered contacts/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 35ms (Views: 33.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 17:49:24 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 30ms (Views: 29.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds/1/edit" for ::1 at 2020-08-20 17:49:26 -0300
+Processing by KindsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered kinds/_form.html.erb (2.6ms)
+  Rendered kinds/edit.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 43ms (Views: 42.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds/1" for ::1 at 2020-08-20 17:49:52 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered kinds/_form.html.erb (1.3ms)
+  Rendered kinds/show.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 36ms (Views: 34.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds/1/edit" for ::1 at 2020-08-20 17:49:54 -0300
+Processing by KindsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mKind Load (0.2ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered kinds/_form.html.erb (1.8ms)
+  Rendered kinds/edit.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 42ms (Views: 40.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/1" for ::1 at 2020-08-20 17:53:29 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mKind Load (0.1ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered kinds/_form.html.erb (1.3ms)
+  Rendered kinds/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 33ms (Views: 31.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds/1/edit" for ::1 at 2020-08-20 17:53:31 -0300
+Processing by KindsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mKind Load (0.1ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered kinds/_form.html.erb (1.8ms)
+  Rendered kinds/edit.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 34ms (Views: 32.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/kinds/new" for ::1 at 2020-08-20 17:53:34 -0300
+Processing by KindsController#new as HTML
+  Rendered kinds/_form.html.erb (1.5ms)
+  Rendered kinds/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 66ms (Views: 65.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-08-20 17:54:13 -0300
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 25ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/kinds" for ::1 at 2020-08-20 17:54:14 -0300
+Processing by KindsController#index as HTML
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT "kinds".* FROM "kinds"[0m
+  Rendered kinds/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 45ms (Views: 43.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/kinds/1" for ::1 at 2020-08-20 17:54:15 -0300
+Processing by KindsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mKind Load (0.2ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered kinds/_form.html.erb (2.6ms)
+  Rendered kinds/show.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 46ms (Views: 44.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:54:17 -0300
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.1ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  [1m[35mKind Load (0.2ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 41ms (Views: 39.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contacts" for ::1 at 2020-08-20 17:54:20 -0300
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.2ms)[0m  SELECT "contacts".* FROM "contacts"
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered contacts/partials/_teste.html.erb (0.1ms)
+  Rendered contacts/index.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 65ms (Views: 64.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/addresses" for ::1 at 2020-08-20 17:54:25 -0300
+Processing by AddressesController#index as HTML
+  [1m[36mAddress Load (0.2ms)[0m  [1mSELECT "addresses".* FROM "addresses"[0m
+  Rendered addresses/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 26ms (Views: 25.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/addresses/new" for ::1 at 2020-08-20 17:54:27 -0300
+Processing by AddressesController#new as HTML
+  Rendered addresses/_form.html.erb (8.0ms)
+  Rendered addresses/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 57ms (Views: 55.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "kinds" ("description", "created_at", "updated_at") VALUES (?, ?, ?)  [["description", "Vizinho"], ["created_at", "2020-08-20 21:04:36.200288"], ["updated_at", "2020-08-20 21:04:36.200288"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "kinds" WHERE "kinds"."id" = ?[0m  [["id", 4]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36mKind Load (0.2ms)[0m  [1mSELECT  "kinds".* FROM "kinds" WHERE "kinds"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateKinds (20200820144228)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "kinds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200820144228"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateContacts (20200820144503)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "kind_id" integer, "rmk" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_contacts_on_kind_id" ON "contacts" ("kind_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20200820144503"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAddresses (20200820144612)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "street" varchar, "city" varchar, "state" varchar, "contact_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_addresses_on_contact_id" ON "addresses" ("contact_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200820144612"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+Migrating to CreatePhones (20200820144647)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "phones" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "phone" varchar, "contact_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_phones_on_contact_id" ON "phones" ("contact_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20200820144647"]]
+  [1m[36m (0.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_addresses_on_contact_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_addresses_on_contact_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_contacts_on_kind_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_contacts_on_kind_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_phones_on_contact_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_phones_on_contact_id' AND type='index'
+[0m
